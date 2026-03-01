@@ -9,11 +9,10 @@ const { chromium } = require('playwright');
 
   for (let seed = 10; seed <= 19; seed++) {
     const url = `https://sanand0.github.io/tdsdata/js_table/?seed=${seed}`;
-    console.log(`
-Navigating to: ${url}`);
+    console.log(`Navigating to: ${url}`);
     
     try {
-      await page.goto(url, { waitUntil: 'networkidle' });
+      await page.goto(url, { waitUntil: 'networkidle' }, { timeout: 30000 });
       
       // Wait for the table to be rendered in the #table div
       await page.waitForSelector('#table table', { timeout: 10000 });
@@ -35,8 +34,7 @@ Navigating to: ${url}`);
     }
   }
 
-  console.log('
-' + '='.repeat(30));
+  console.log('\n' + '='.repeat(30));
   console.log(`TOTAL_SUM: ${totalSum}`);
   console.log('='.repeat(30));
 
